@@ -10,7 +10,12 @@ public class GridEditor : Editor{
     public void OnEnable()
     {
         grid = (Grid)target;
-        SceneView.onSceneGUIDelegate = GridUpdate;
+        SceneView.onSceneGUIDelegate += GridUpdate;
+    }
+
+    public void OnDisable()
+    {
+        SceneView.onSceneGUIDelegate -= GridUpdate;
     }
 
     private void GridUpdate(SceneView sceneView)
