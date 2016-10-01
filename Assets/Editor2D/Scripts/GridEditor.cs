@@ -10,12 +10,7 @@ public class GridEditor : Editor{
     public void OnEnable()
     {
         grid = (Grid)target;
-        SceneView.onSceneGUIDelegate += GridUpdate;
-    }
-
-    public void OnDisable()
-    {
-        SceneView.onSceneGUIDelegate -= GridUpdate;
+        SceneView.onSceneGUIDelegate = GridUpdate;
     }
 
     private void GridUpdate(SceneView sceneView)
@@ -24,8 +19,8 @@ public class GridEditor : Editor{
         Ray r = Camera.current.ScreenPointToRay(new Vector3(e.mousePosition.x, -e.mousePosition.y + Camera.current.pixelHeight));
         Vector3 mousePos = r.origin;
 
-        // Left Click
-        if (e.isMouse && e.button == 0 && e.type == EventType.MouseDown)
+        // Right Click
+        if (e.isMouse && e.button == 1 && e.type == EventType.MouseDown)
         {
             GameObject obj;
             Object prefab = PrefabUtility.GetPrefabParent(Selection.activeObject);
