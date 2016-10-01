@@ -28,8 +28,8 @@ public class GridEditor : Editor{
             if (prefab && isOnGrid(mousePos))
             {
                 obj = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-                Vector3 aligned = new Vector3( Mathf.Floor(mousePos.x/grid.width)  * grid.width + grid.initialPosition.x + (grid.width/2),
-                                               Mathf.Floor(mousePos.y/grid.height) * grid.height + grid.initialPosition.y + (grid.height/2), 0);
+                Vector3 aligned = new Vector3( Mathf.Floor(mousePos.x/grid.width)  * grid.width + grid.InitialPosition.x + (grid.width/2),
+                                               Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.InitialPosition.y + (grid.height / 2), 0);
                 obj.transform.position = aligned;
             }
         }
@@ -37,15 +37,13 @@ public class GridEditor : Editor{
 
     private bool isOnGrid(Vector3 mousePos)
     {
-        return mousePos.x < ((grid.numColumns * grid.width) / 2) + grid.initialPosition.x && mousePos.x > -((grid.numColumns * grid.width) / 2) + grid.initialPosition.x
+        return mousePos.x < ((grid.numColumns * grid.width) / 2) + grid.InitialPosition.x && mousePos.x > -((grid.numColumns * grid.width) / 2) + grid.InitialPosition.x
                &&
-               mousePos.y < ((grid.numRows * grid.height) / 2) + grid.initialPosition.y && mousePos.y > -((grid.numRows * grid.height) / 2) + grid.initialPosition.y;             
+               mousePos.y < ((grid.numRows * grid.height) / 2) + grid.InitialPosition.y && mousePos.y > -((grid.numRows * grid.height) / 2) + grid.InitialPosition.y;             
     }
 
     public override void OnInspectorGUI()
     {
-
-        grid.initialPosition = EditorGUILayout.Vector3Field("Position", grid.initialPosition);
         grid.width           = EditorGUILayout.FloatField("Grid Width", grid.width);
         grid.height          = EditorGUILayout.FloatField("Grid Height", grid.height);
         grid.numColumns      = EditorGUILayout.IntField("Number of Columns", grid.numColumns);

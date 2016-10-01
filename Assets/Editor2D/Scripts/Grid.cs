@@ -5,15 +5,22 @@
     [ExecuteInEditMode]
     public class Grid : MonoBehaviour {
 
-        public Vector3 initialPosition = new Vector3(0,0,0);
         public float width    = 32.0f;
         public float height   = 32.0f;
         public int numColumns = 20;
         public int numRows    = 20;
 
+        public Vector3 InitialPosition 
+        {
+            get 
+            {
+                return transform.position;
+            }
+        }
+
         void OnDrawGizmos()
         {
-            Vector3 pos = initialPosition;
+            Vector3 pos = InitialPosition;
 
             float halfCanvasWidth = (numColumns * width)/2;
             float halfCanvasHeight = (numRows * height)/2;
